@@ -7,20 +7,16 @@ import (
 )
 
 func SetupRouter() *gin.Engine {
-    router := gin.Default()
+	router := gin.Default()
 
-    studentRoutes := router.Group("/students")
-    {
-        studentRoutes.GET("/", controllers.GetStudents)
-        studentRoutes.GET("/:id", controllers.GetStudentByID)
-        studentRoutes.POST("/", controllers.CreateStudent)
-        studentRoutes.PUT("/:id", controllers.UpdateStudent)
-        studentRoutes.DELETE("/:id", controllers.DeleteStudent)
-		studentRoutes.POST("/companies", controllers.CreateCompany)
-		studentRoutes.POST("/branches", controllers.CreateBranch)
+	// Removed the group, registered routes directly
+	router.GET("/", controllers.GetStudents)
+	router.GET("/:id", controllers.GetStudentByID)
+	router.POST("/", controllers.CreateStudent)
+	router.PUT("/:id", controllers.UpdateStudent)
+	router.DELETE("/:id", controllers.DeleteStudent)
+	router.POST("/companies", controllers.CreateCompany)
+	router.POST("/branches", controllers.CreateBranch)
 
-
-    }
-
-    return router
+	return router
 }
