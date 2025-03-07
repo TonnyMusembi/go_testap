@@ -17,6 +17,8 @@ func SetupRouter() *gin.Engine {
         studentRoutes.PUT("/:id", controllers.UpdateStudent)
         studentRoutes.DELETE("/:id", controllers.DeleteStudent)
 		studentRoutes.POST("/companies", controllers.CreateCompany)
+		studentRoutes.POST("/branches", controllers.CreateBranch)
+
 
     }
 
