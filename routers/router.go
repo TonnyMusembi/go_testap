@@ -17,6 +17,8 @@ func SetupRouter() *gin.Engine {
 	router.DELETE("/:id", controllers.DeleteStudent)
 	router.POST("/companies", controllers.CreateCompany)
 	router.POST("/branches", controllers.CreateBranch)
+	router.GET("/companies/:company_id/branches/count", controllers.GetBranchCount)
+
 
 	return router
 }
