@@ -12,3 +12,5 @@ type Branch struct {
 	UpdatedAt       time.Time `json:"updated_at"`
 	Version         string    `json:"version"`
 }
+
+

@@ -95,3 +95,5 @@ func GetBranchesByCompany(companyID int) ([]models.Branch, error) {
     }
     return result.([]models.Branch), nil
 }
+
+

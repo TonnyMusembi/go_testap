@@ -3,6 +3,7 @@ package controllers
 import (
 	"log/slog"
 	"net/http"
+	"strconv"
 	"student-api/models"
 	"student-api/repositories"
 
@@ -32,4 +33,24 @@ func CreateCompany(c *gin.Context) {
 		"message": "Company created successfully",
 		"id":      id,
 	})
+}
+
+
+func GetCompanyByID(c *gin.Context) {
+	id, err := strconv.Atoi(c.Param("id"))
+    if err != nil {
+        slog.Error("Invalid company ID", "id", c.Param("id"), "error", err)
+        c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid company ID"})
+        return
+    }
+
+    // Call the repository function to get the company by ID
+    company, err := repositories.GetCompanyByID(id)
+    if err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+        slog.Error("Failed to fetch company", "id", id, "error", err)
+        return
+    }
+
+    c.JSON(http.StatusOK, gin.H{"data": company})
 }
