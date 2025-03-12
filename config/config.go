@@ -3,7 +3,6 @@ package config
 import (
 	"database/sql"
 	"fmt"
-
 	_ "github.com/go-sql-driver/mysql"
 )
 
@@ -11,16 +10,20 @@ var DB *sql.DB
 
 func ConnectDatabase() {
     dsn := "root:tonny@07@tcp(127.0.0.1:3306)/users"
+    fmt.Println("Connecting to database...")
+
     db, err := sql.Open("mysql", dsn)
     if err != nil {
         panic(fmt.Sprintf("Failed to connect to database: %s", err.Error()))
     }
+    fmt.Println("Connected to database successfully!")
 
     if err = db.Ping(); err != nil {
         panic(fmt.Sprintf("Failed to ping database: %s", err.Error()))
     }
 
     DB = db
+
 
     // Create table if it doesn't exist
     query := `CREATE TABLE IF NOT EXISTS students (
@@ -29,7 +32,9 @@ func ConnectDatabase() {
         age INT NOT NULL,
         grade VARCHAR(50) NOT NULL
     );`
+    
     if _, err := DB.Exec(query); err != nil {
         panic(fmt.Sprintf("Failed to create table: %s", err.Error()))
     }
+    
 }

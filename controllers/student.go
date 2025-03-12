@@ -103,3 +103,20 @@ func DeleteStudent(c *gin.Context) {
 	slog.Info("Successfully deleted student", "id", id)
 	c.JSON(http.StatusOK, gin.H{"data": "Student deleted successfully"})
 }
+
+// func GetStudentsByBranch(c *gin.Context) {
+// 	branchID, err := strconv.Atoi(c.Param("branch_id"))
+//     if err != nil {
+//         slog.Error("Invalid branch ID", "branch_id", c.Param("branch_id"), "error", err)
+//         c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid branch ID"})
+//         return
+//     }
+
+//     students, err := repositories.GetStudentsByBranch(branchID)
+//     if err != nil {
+//         slog.Error("Failed to fetch students by branch", "branch_id", branchID, "error", err)
+//         c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+//         return
+//     }
+//     slog.Info("Successfully fetched students by branch", "branch_id", branchID, "count", len(students))
+// }

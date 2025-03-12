@@ -19,6 +19,7 @@ func SetupRouter() *gin.Engine {
 	router.POST("/branches", controllers.CreateBranch)
 	router.GET("/branch/:id", controllers.GetBranchesByCompany)
 	router.GET("/companies/:company_id/branches/count", controllers.GetBranchCount)
+	router.GET("company/:id", controllers.GetCompanyByID)
 
 	return router
 }
