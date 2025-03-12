@@ -8,7 +8,6 @@ import (
 )
 
 func main() {
-
 	logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
 	slog.SetDefault(logger)
     config.ConnectDatabase()

@@ -56,3 +56,26 @@ func GetBranchCount(c *gin.Context) {
 		"count":      count,
 	})
 }
+
+func GetBranchesByCompany(c *gin.Context) {
+	// Parse the company_id from the request
+    companyIDStr := c.Param("company_id")
+    companyID, err := strconv.Atoi(companyIDStr)
+    if err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid company ID"})
+        return
+    }
+
+    // Call the repository function to get the branches by company
+    branches, err := repositories.GetBranchesByCompany(companyID)
+    if err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+        return
+    }
+
+    // Return the branches by company
+    c.JSON(http.StatusOK, gin.H{
+        "company_id": companyID,
+        "branches":   branches,
+    })
+}
